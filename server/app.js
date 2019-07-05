@@ -1,5 +1,5 @@
-if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-  require('dotenv').config();
+if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+  require('dotenv').config()
 }
 
 const express = require('express');
@@ -18,11 +18,11 @@ if (process.env.NODE_ENV === 'test') {
   databaseUrl = process.env.DATABASE_URL_TEST;
 } else if (process.env.NODE_ENV === 'development') {
   databaseUrl = process.env.DATABASE_URL_DEVELOPMENT;
-} else if(process.env.NODE_ENV === 'production') {
+} else if (process.env.NODE_ENV === 'production') {
   databaseUrl = process.env.DATABASE_URL_PRODUCTION
 }
 
-mongoose.connect(databaseURL, {
+mongoose.connect(databaseUrl, {
     useNewUrlParser: true
   })
   .then(() => {
@@ -31,9 +31,11 @@ mongoose.connect(databaseURL, {
   .catch((err) => {
     console.log(err);
   });
-  
-app.use(cors()); 
-app.use(express.urlencoded({extended:false}));
+
+app.use(cors());
+app.use(express.urlencoded({
+  extended: false
+}));
 app.use(express.json());
 
 app.use('/', routes);
