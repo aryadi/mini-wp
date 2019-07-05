@@ -7,10 +7,20 @@ const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-const databaseURL = `mongodb://localhost:27017/mini-wp`;
-const port = 3000;
+const databaseURL = ``;
+const port = process.env.PORT || 3000;
 
 const routes = require('./routes');
+
+let databaseUrl = '';
+
+if (process.env.NODE_ENV === 'test') {
+  databaseUrl = process.env.DATABASE_URL_TEST;
+} else if (process.env.NODE_ENV === 'development') {
+  databaseUrl = process.env.DATABASE_URL_DEVELOPMENT;
+} else if(process.env.NODE_ENV === 'production') {
+  databaseUrl = process.env.DATABASE_URL_PRODUCTION
+}
 
 mongoose.connect(databaseURL, {
     useNewUrlParser: true
