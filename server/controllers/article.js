@@ -43,7 +43,7 @@ class Article {
     }
 
     if (req.file) {
-      objArticle['image'] = req.body.description;
+      objArticle['image'] = req.file.gcsUrl;
     }
 
     console.log(objArticle);

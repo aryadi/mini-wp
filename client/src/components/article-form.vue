@@ -15,7 +15,6 @@
     props: ['articleObj'],
     data() {
       return {
-
       }
     },
     methods: {
