@@ -96,7 +96,7 @@
       register() {
         axios({
             method: 'POST',
-            url: 'http://localhost:3000/user/register',
+            url: 'http://mini-wp-1-server.madearyadi.club/user/register',
             data: this.registerData
           })
           .then((response) => {
@@ -109,7 +109,7 @@
       login() {
         axios({
             method: 'POST',
-            url: 'http://localhost:3000/user/login',
+            url: 'http://mini-wp-1-server.madearyadi.club/user/login',
             data: this.loginData
           })
           .then((response) => {
@@ -135,7 +135,7 @@
         const idToken = googleUser.getAuthResponse().id_token;
 
         axios
-          .post(`http://localhost:3000/user/tokensignin`, {
+          .post(`http://mini-wp-1-server.madearyadi.club/user/tokensignin`, {
             idToken
           })
           .then(({
@@ -197,7 +197,7 @@
         formData.append('description', this.articleObj.description);
         axios({
             method: 'POST',
-            url: 'http://localhost:3000/api/articles',
+            url: 'http://mini-wp-1-server.madearyadi.club/api/articles',
             data: formData,
             headers: {
               token: localStorage.getItem('token')
@@ -257,7 +257,7 @@
         formDataEdit.append('description', this.articleObj.description);
         axios({
             method: 'PATCH',
-            url: `http://localhost:3000/api/articles/${this.idEdit}`,
+            url: `http://mini-wp-1-server.madearyadi.club/api/articles/${this.idEdit}`,
             data: formDataEdit,
             headers: {
               token: localStorage.getItem('token')
@@ -312,7 +312,7 @@
           if (result.value) {
             axios({
                 method: 'DELETE',
-                url: `http://localhost:3000/api/articles/${id}`,
+                url: `http://mini-wp-1-server.madearyadi.club/api/articles/${id}`,
                 headers: {
                   token: localStorage.getItem('token')
                 },
@@ -371,7 +371,7 @@
     created() {
       axios({
           method: 'GET',
-          url: 'http://localhost:3000/api/articles'
+          url: 'http://mini-wp-1-server.madearyadi.club/api/articles'
         })
         .then(({
           data
