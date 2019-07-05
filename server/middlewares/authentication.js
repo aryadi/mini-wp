@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
       const decode = decodeToken(req.headers.token);
       req.decode = decode;
       next();
-    } catch {
+    } catch(e) {
       next({
         code: 401
       })
